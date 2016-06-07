@@ -15,7 +15,7 @@
 %define	shortcommit 4dc5990
 
 Name:           containerd
-Version:        0.2.1
+Version:        0.2.2
 Release:        1
 Summary:        Daemon to control runC
 License:        ASL 2.0
@@ -29,7 +29,6 @@ BuildRequires:  pkgconfig(sqlite3)
 
 BuildRequires:  go-md2man
 BuildRequires:  pkgconfig(systemd)
-BuildRequires:	pkgconfig(libsystemd-journal)
 BuildRequires:	pkgconfig(devmapper)
 BuildRequires:	btrfs-devel
 Requires:       systemd-units
