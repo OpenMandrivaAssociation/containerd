@@ -16,7 +16,7 @@
 
 Name:           containerd
 Version:        0.2.2
-Release:        1
+Release:        2
 Summary:        Daemon to control runC
 License:        ASL 2.0
 Group:		System/Base
@@ -31,7 +31,7 @@ BuildRequires:  go-md2man
 BuildRequires:  pkgconfig(systemd)
 BuildRequires:	pkgconfig(devmapper)
 BuildRequires:	btrfs-devel
-Requires:       systemd-units
+Requires:       systemd
 
 # need xz to work with ubuntu images
 # https://bugzilla.redhat.com/show_bug.cgi?id=1045220
@@ -190,14 +190,10 @@ for i in *; do
 	ln -s $i docker-$i
 done
 
-%post
-%systemd_post containerd
-
-%preun
-%systemd_preun containerd
-
-%postun
-%systemd_postun_with_restart containerd
+install -d %{buildroot}%{_presetdir}
+cat > %{buildroot}%{_presetdir}/86-containerd.preset << EOF
+enable containerd.service
+EOF
 
 %files
 %doc MAINTAINERS NOTICE README.md 
@@ -207,6 +203,7 @@ done
 %{_bindir}/docker-containerd
 %{_bindir}/docker-containerd-shim
 %{_bindir}/docker-ctr
+%{_presetdir}/86-containerd.preset
 %{_unitdir}/containerd.service
 
 %files devel
