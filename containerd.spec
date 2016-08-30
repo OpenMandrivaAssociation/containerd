@@ -15,8 +15,8 @@
 %define	shortcommit 4dc5990
 
 Name:           containerd
-Version:        0.2.2
-Release:        2
+Version:        0.2.3
+Release:        1
 Summary:        Daemon to control runC
 License:        ASL 2.0
 Group:		System/Base
@@ -159,7 +159,10 @@ done
 cat >vendor/src/github.com/docker/containerd/version.go <<'EOF'
 package containerd;
 const Version = "%{version}";
-const GitCommit = "1234567890";
+const GitCommit = "%{version}";
+const VersionMajor = 0;
+const VersionMinor = 2;
+const VersionPatch = 3;
 EOF
 
 GOPATH=`pwd` make
