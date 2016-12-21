@@ -15,7 +15,7 @@
 %define	shortcommit 4dc5990
 
 Name:           containerd
-Version:        0.2.4
+Version:        0.2.5
 Release:        1
 Summary:        Daemon to control runC
 License:        ASL 2.0
