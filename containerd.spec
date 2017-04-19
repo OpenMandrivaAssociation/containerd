@@ -199,7 +199,7 @@ enable containerd.service
 EOF
 
 %files
-%doc MAINTAINERS NOTICE README.md 
+%doc MAINTAINERS NOTICE README.md
 %{_bindir}/containerd
 %{_bindir}/containerd-shim
 %{_bindir}/ctr
