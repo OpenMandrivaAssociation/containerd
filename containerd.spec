@@ -15,7 +15,7 @@
 %define	shortcommit 4dc5990
 
 Name:           containerd
-Version:        0.2.3
+Version:        0.2.5
 Release:        1
 Summary:        Daemon to control runC
 License:        ASL 2.0
@@ -199,7 +199,7 @@ enable containerd.service
 EOF
 
 %files
-%doc MAINTAINERS NOTICE README.md 
+%doc MAINTAINERS NOTICE README.md
 %{_bindir}/containerd
 %{_bindir}/containerd-shim
 %{_bindir}/ctr
