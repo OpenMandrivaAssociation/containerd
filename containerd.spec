@@ -12,10 +12,10 @@
 %define provider github
 %define provider_tld com
 %define project %{name}
-%define	shortcommit 4dc5990
+%define	shortcommit 9048e5e
 
 Name:           containerd
-Version:        0.2.5
+Version:        0.2.8
 Release:        1
 Summary:        Daemon to control runC
 License:        ASL 2.0
