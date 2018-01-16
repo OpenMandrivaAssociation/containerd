@@ -151,6 +151,12 @@ This is the source libraries for docker.
 #export CGO_LDFLAGS="-L%{_libdir}"
 #export AUTO_GOPATH=1
 
+%if %{mdvver} <= 3000000
+%ifarch %{ix86}
+export CGO_ENABLED=0
+%endif
+%endif
+
 # FIXME there must be a better way to make go see those?!
 mkdir -p vendor/src/github.com/docker/containerd
 for i in *; do
