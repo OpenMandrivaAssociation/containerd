@@ -107,6 +107,8 @@ install -D -m 0755 bin/containerd-shim %{buildroot}%{_bindir}/containerd-shim
 %{?with_ctr:install -D -m 0755 bin/ctr %{buildroot}%{_bindir}/ctr}
 install -D -m 0644 %{S:1} %{buildroot}%{_unitdir}/containerd.service
 install -D -m 0644 %{S:2} %{buildroot}%{_sysconfdir}/containerd/config.toml
+ln -s containerd %{buildroot}%{_bindir}/docker-containerd
+ln -s containerd-shim %{buildroot}%{_bindir}/docker-containerd-shim
 
 %post
 %systemd_post containerd.service
@@ -119,6 +121,8 @@ install -D -m 0644 %{S:2} %{buildroot}%{_sysconfdir}/containerd/config.toml
 
 %files
 %{_bindir}/containerd
+%{_bindir}/docker-containerd
+%{_bindir}/docker-containerd-shim
 %{_bindir}/containerd-shim
 %{?with_ctr:%{_bindir}/ctr}
 %{_unitdir}/containerd.service
