@@ -1,6 +1,5 @@
 %bcond_without ctr
 %bcond_with debug
-%define go_arches %{ix86} x86_64 %{armx}
 
 %if %{with debug}
 %global _dwz_low_mem_die_limit 0
@@ -23,7 +22,6 @@ URL: https://containerd.io
 Source0: https://%{import_path}/archive/%{tag}/containerd-%{version}.tar.gz
 Source1: containerd.service
 Source2: containerd.toml
-ExclusiveArch: %{go_arches}
 %{?go_compiler:BuildRequires: compiler(go-compiler)}
 BuildRequires: golang >= 1.8
 BuildRequires: systemd
