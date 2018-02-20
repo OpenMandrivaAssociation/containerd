@@ -12,10 +12,11 @@
 %global import_path github.com/containerd/containerd
 
 Name: containerd
-Version: 1.0.2
+Version: 1.0.1
 %global commit 9b55aab90508bd389d7654c4baf173a981477d55
 %global tag v%{version}
-Release: 1%{?dist}
+Release: 1
+Epoch:	1
 Summary: An industry-standard container runtime
 License: ASL 2.0
 URL: https://containerd.io
