@@ -12,8 +12,8 @@
 %global import_path github.com/containerd/containerd
 
 Name: containerd
-Version: 1.0.1
-%global commit 9b55aab90508bd389d7654c4baf173a981477d55
+Version: 1.0.3
+%global commit 773c489c9c1b21a6d78b5c538cd395416ec50f88
 %global tag v%{version}
 Release: 1
 Epoch:	1
@@ -90,8 +90,8 @@ low-level storage and network attachments, etc.
 %setup -qn containerd-%{version}
 
 %build
-export CC=gcc
-export CXX=g++
+#export CC=gcc
+#export CXX=g++
 mkdir -p src/%(dirname %{import_path})
 ln -s ../../.. src/%{import_path}
 export GOPATH=$(pwd):%{gopath}
