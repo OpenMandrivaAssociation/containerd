@@ -15,7 +15,7 @@ Name: containerd
 Version: 1.0.3
 %global commit 773c489c9c1b21a6d78b5c538cd395416ec50f88
 %global tag v%{version}
-Release: 1
+Release: 2
 Epoch:	1
 Summary: An industry-standard container runtime
 License: ASL 2.0
