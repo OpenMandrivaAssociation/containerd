@@ -16,7 +16,7 @@ Name: containerd
 Version: 1.2.0
 %global commit 773c489c9c1b21a6d78b5c538cd395416ec50f88
 %global tag v%{version}
-Release: 1%{?dist}
+Release: 2
 Epoch:	1
 Summary: An industry-standard container runtime
 License: ASL 2.0
@@ -115,6 +115,10 @@ install -D -m 0644 man/ctr.1 %{buildroot}%{_mandir}/man1/ctr.1
 install -D -m 0644 man/containerd-config.toml.5 %{buildroot}%{_mandir}/man5/containerd-config.toml.5
 install -D -m 0644 %{S:1} %{buildroot}%{_unitdir}/containerd.service
 install -D -m 0644 %{S:2} %{buildroot}%{_sysconfdir}/containerd/config.toml
+
+ln -s containerd %{buildroot}%{_bindir}/docker-containerd
+ln -s containerd-shim %{buildroot}%{_bindir}/docker-containerd-shim
+
 
 
 %post
