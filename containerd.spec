@@ -138,6 +138,8 @@ ln -s containerd-shim %{buildroot}%{_bindir}/docker-containerd-shim
 %doc README.md
 %{_bindir}/containerd
 %{_bindir}/containerd-shim
+%{_bindir}/docker-containerd
+%{_bindir}/docker-containerd-shim
 %{_bindir}/ctr
 %{_unitdir}/containerd.service
 %{_mandir}/man1/containerd.1*
