@@ -13,10 +13,10 @@
 %global import_path github.com/containerd/containerd
 
 Name: containerd
-Version: 1.2.2
+Version: 1.2.4
 %global commit 9754871865f7fe2f4e74d43e2fc7ccd237edcbce
 %global tag v%{version}
-Release: 2
+Release: 1
 Epoch:	1
 Summary: An industry-standard container runtime
 License: ASL 2.0
@@ -89,7 +89,6 @@ low-level storage and network attachments, etc.
 %prep
 %autosetup -n containerd-%{version}
 
-
 %build
 mkdir -p src/%(dirname %{import_path})
 ln -s ../../.. src/%{import_path}
@@ -103,7 +102,6 @@ go-md2man -in src/%{import_path}/docs/man/containerd.1.md -out man/containerd.1
 go-md2man -in src/%{import_path}/docs/man/containerd-config.1.md -out man/containerd-config.1
 go-md2man -in src/%{import_path}/docs/man/ctr.1.md -out man/ctr.1
 go-md2man -in src/%{import_path}/docs/man/containerd-config.toml.5.md -out man/containerd-config.toml.5
-
 
 %install
 install -D -m 0755 bin/containerd %{buildroot}%{_bindir}/containerd
@@ -119,19 +117,14 @@ install -D -m 0644 %{S:2} %{buildroot}%{_sysconfdir}/containerd/config.toml
 ln -s containerd %{buildroot}%{_bindir}/docker-containerd
 ln -s containerd-shim %{buildroot}%{_bindir}/docker-containerd-shim
 
-
-
 %post
 %systemd_post containerd.service
-
 
 %preun
 %systemd_preun containerd.service
 
-
 %postun
 %systemd_postun_with_restart containerd.service
-
 
 %files
 %license LICENSE
@@ -148,47 +141,3 @@ ln -s containerd-shim %{buildroot}%{_bindir}/docker-containerd-shim
 %{_mandir}/man5/containerd-config.toml.5*
 %dir %{_sysconfdir}/containerd
 %config(noreplace) %{_sysconfdir}/containerd/config.toml
-
-
-%changelog
-* Thu Oct 25 2018 Carl George <carl@george.computer> - 1.2.0-1
-- Latest upstream
-
-* Mon Aug 13 2018 Carl George <carl@george.computer> - 1.1.2-1
-- Latest upstream
-
-* Thu Jul 12 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.0-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
-
-* Thu Apr 26 2018 Carl George <carl@george.computer> - 1.1.0-1
-- Latest upstream
-- Build and include man pages
-
-* Wed Apr 04 2018 Carl George <carl@george.computer> - 1.0.3-1
-- Latest upstream
-
-* Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.1-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
-
-* Mon Jan 22 2018 Carl George <carl@george.computer> - 1.0.1-1
-- Latest upstream
-
-* Wed Dec 06 2017 Carl George <carl@george.computer> - 1.0.0-1
-- Latest upstream
-
-* Fri Nov 10 2017 Carl George <carl@george.computer> - 1.0.0-0.5.beta.3
-- Latest upstream
-
-* Thu Oct 19 2017 Carl George <carl@george.computer> - 1.0.0-0.4.beta.2
-- Own /etc/containerd
-
-* Thu Oct 12 2017 Carl George <carl@george.computer> - 1.0.0-0.3.beta.2
-- Latest upstream
-- Require runc 1.0.0 https://github.com/containerd/containerd/issues/1508#issuecomment-335566293
-
-* Mon Oct 09 2017 Carl George <carl@george.computer> - 1.0.0-0.2.beta.1
-- Add provides for vendored dependencies
-- Add ctr command
-
-* Wed Oct 04 2017 Carl George <carl@george.computer> - 1.0.0-0.1.beta.1
-- Initial package
