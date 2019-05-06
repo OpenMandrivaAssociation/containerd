@@ -17,7 +17,7 @@ Version: 1.2.4
 %global commit 9754871865f7fe2f4e74d43e2fc7ccd237edcbce
 %global tag v%{version}
 Release: 1
-Epoch:	1
+Epoch: 1
 Summary: An industry-standard container runtime
 License: ASL 2.0
 URL: https://containerd.io
@@ -32,6 +32,7 @@ BuildRequires: protobuf-compiler
 BuildRequires: pkgconfig(protobuf) >= 3
 BuildRequires: btrfs-devel
 BuildRequires: go-md2man
+BuildRequires: go-srpm-macros
 %{?systemd_requires}
 # https://github.com/containerd/containerd/issues/1508#issuecomment-335566293
 Requires: runc >= 1.0.0
