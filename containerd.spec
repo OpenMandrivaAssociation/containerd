@@ -13,7 +13,7 @@
 %global import_path github.com/containerd/containerd
 
 Name: containerd
-Version: 1.2.4
+Version:	1.2.7
 %global commit 9754871865f7fe2f4e74d43e2fc7ccd237edcbce
 %global tag v%{version}
 Release: 1
