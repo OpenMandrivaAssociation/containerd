@@ -13,10 +13,10 @@
 %global import_path github.com/containerd/containerd
 
 Name: containerd
-Version:	1.2.7
+Version:	1.3.0
 %global commit 9754871865f7fe2f4e74d43e2fc7ccd237edcbce
 %global tag v%{version}
-Release: 1
+Release:	1
 Epoch: 1
 Summary: An industry-standard container runtime
 License: ASL 2.0
@@ -140,20 +140,11 @@ export LDFLAGS="-X %{import_path}/version.Package=%{import_path} -X %{import_pat
 %gobuild -o bin/containerd %{import_path}/cmd/containerd
 %gobuild -o bin/containerd-shim %{import_path}/cmd/containerd-shim
 %gobuild -o bin/ctr %{import_path}/cmd/ctr
-mkdir man
-go-md2man -in src/%{import_path}/docs/man/containerd.1.md -out man/containerd.1
-go-md2man -in src/%{import_path}/docs/man/containerd-config.1.md -out man/containerd-config.1
-go-md2man -in src/%{import_path}/docs/man/ctr.1.md -out man/ctr.1
-go-md2man -in src/%{import_path}/docs/man/containerd-config.toml.5.md -out man/containerd-config.toml.5
 
 %install
 install -D -m 0755 bin/containerd %{buildroot}%{_bindir}/containerd
 install -D -m 0755 bin/containerd-shim %{buildroot}%{_bindir}/containerd-shim
 install -D -m 0755 bin/ctr %{buildroot}%{_bindir}/ctr
-install -D -m 0644 man/containerd.1 %{buildroot}%{_mandir}/man1/containerd.1
-install -D -m 0644 man/containerd-config.1 %{buildroot}%{_mandir}/man1/containerd-config.1
-install -D -m 0644 man/ctr.1 %{buildroot}%{_mandir}/man1/ctr.1
-install -D -m 0644 man/containerd-config.toml.5 %{buildroot}%{_mandir}/man5/containerd-config.toml.5
 install -D -m 0644 %{S:1} %{buildroot}%{_unitdir}/containerd.service
 install -D -m 0644 %{S:2} %{buildroot}%{_sysconfdir}/containerd/config.toml
 
@@ -178,9 +169,5 @@ ln -s containerd-shim %{buildroot}%{_bindir}/docker-containerd-shim
 %{_bindir}/docker-containerd-shim
 %{_bindir}/ctr
 %{_unitdir}/containerd.service
-%{_mandir}/man1/containerd.1*
-%{_mandir}/man1/containerd-config.1*
-%{_mandir}/man1/ctr.1*
-%{_mandir}/man5/containerd-config.toml.5*
 %dir %{_sysconfdir}/containerd
 %config(noreplace) %{_sysconfdir}/containerd/config.toml
