@@ -12,16 +12,18 @@
 
 %global import_path github.com/containerd/containerd
 
+%define beta beta.1
+
 Name: containerd
-Version:	1.3.3
-%global commit 9754871865f7fe2f4e74d43e2fc7ccd237edcbce
-%global tag v%{version}
-Release:	1
+Version:	1.4.0
+%global commit 8e9ba8376ec25a6158719118a97a99a3555d0fd8
+%global tag v%{version}%{?beta:-%{beta}}
+Release:	%{?beta:0.%{beta}.}1
 Epoch: 1
 Summary: An industry-standard container runtime
 License: ASL 2.0
 URL: https://containerd.io
-Source0: https://%{import_path}/archive/%{tag}/containerd-%{version}.tar.gz
+Source0: https://%{import_path}/archive/%{tag}/containerd-%{version}%{?beta:-%{beta}}.tar.gz
 Source1: containerd.service
 Source2: containerd.toml
 BuildRequires: systemd-macros
@@ -130,7 +132,7 @@ low-level storage and network attachments, etc.
 
 
 %prep
-%autosetup -n containerd-%{version}
+%autosetup -n containerd-%{version}%{?beta:-%{beta}}
 
 %build
 mkdir -p src/%(dirname %{import_path})
