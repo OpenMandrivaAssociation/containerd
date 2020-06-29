@@ -36,7 +36,7 @@ BuildRequires: go-md2man
 BuildRequires: go-srpm-macros
 %{?systemd_requires}
 # https://github.com/containerd/containerd/issues/1508#issuecomment-335566293
-Requires: runc >= 1.0.0
+Requires: (runc or crun)
 # vendored libraries
 # grep -v -e '^$' -e '^#' containerd-*/vendor.conf | awk '{print "Provides: bundled(golang("$1")) = "$2}' | sort
 Provides: bundled(golang(github.com/beorn7/perks)) = 4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9
