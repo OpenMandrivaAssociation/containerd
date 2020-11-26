@@ -12,10 +12,10 @@
 
 %global import_path github.com/containerd/containerd
 
-%define beta beta.2
+%define beta %nil
 
 Name: containerd
-Version:	1.4.0
+Version:	1.4.2
 %global commit 8e9ba8376ec25a6158719118a97a99a3555d0fd8
 %global tag v%{version}%{?beta:-%{beta}}
 Release:	%{?beta:0.%{beta}.}1
@@ -129,7 +129,6 @@ simplicity, robustness and portability. It is available as a daemon for Linux
 and Windows, which can manage the complete container lifecycle of its host
 system: image transfer and storage, container execution and supervision,
 low-level storage and network attachments, etc.
-
 
 %prep
 %autosetup -n containerd-%{version}%{?beta:-%{beta}}
