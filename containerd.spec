@@ -12,7 +12,7 @@
 
 %global import_path github.com/containerd/containerd
 
-%define beta 0
+#define beta 0
 
 Name: containerd
 Version:	1.4.2
