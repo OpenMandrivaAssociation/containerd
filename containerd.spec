@@ -18,7 +18,7 @@ Name: containerd
 Version:	1.4.3
 %global commit 8e9ba8376ec25a6158719118a97a99a3555d0fd8
 %global tag v%{version}%{?beta:-%{beta}}
-Release:	%{?beta:0.%{beta}.}1
+Release:	%{?beta:0.%{beta}.}2
 Epoch: 1
 Summary: An industry-standard container runtime
 License: ASL 2.0
@@ -138,19 +138,22 @@ mkdir -p src/%(dirname %{import_path})
 ln -s ../../.. src/%{import_path}
 export GOPATH=$(pwd):%{gopath}
 export LDFLAGS="-X %{import_path}/version.Package=%{import_path} -X %{import_path}/version.Version=%{tag} -X %{import_path}/version.Revision=%{commit}"
-%gobuild -o bin/containerd %{import_path}/cmd/containerd
-%gobuild -o bin/containerd-shim %{import_path}/cmd/containerd-shim
-%gobuild -o bin/ctr %{import_path}/cmd/ctr
+for i in cmd/*; do
+	%gobuild -o bin/$(basename $i) %{import_path}/$i
+done
+
 
 %install
-install -D -m 0755 bin/containerd %{buildroot}%{_bindir}/containerd
-install -D -m 0755 bin/containerd-shim %{buildroot}%{_bindir}/containerd-shim
-install -D -m 0755 bin/ctr %{buildroot}%{_bindir}/ctr
+mkdir -p %{buildroot}%{_bindir}
+install -D -m 0755 bin/* %{buildroot}%{_bindir}/
 install -D -m 0644 %{S:1} %{buildroot}%{_unitdir}/containerd.service
 install -D -m 0644 %{S:2} %{buildroot}%{_sysconfdir}/containerd/config.toml
 
 ln -s containerd %{buildroot}%{_bindir}/docker-containerd
 ln -s containerd-shim %{buildroot}%{_bindir}/docker-containerd-shim
+
+# These are needed at build time only
+rm %{buildroot}%{_bindir}/gen-manpages %{buildroot}%{_bindir}/protoc-gen-gogoctrd
 
 %post
 %systemd_post containerd.service
@@ -166,6 +169,9 @@ ln -s containerd-shim %{buildroot}%{_bindir}/docker-containerd-shim
 %doc README.md
 %{_bindir}/containerd
 %{_bindir}/containerd-shim
+%{_bindir}/containerd-shim-runc-v1
+%{_bindir}/containerd-shim-runc-v2
+%{_bindir}/containerd-stress
 %{_bindir}/docker-containerd
 %{_bindir}/docker-containerd-shim
 %{_bindir}/ctr
