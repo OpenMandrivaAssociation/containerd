@@ -15,7 +15,7 @@
 #define beta 0
 
 Name: containerd
-Version:	1.4.4
+Version:	1.5.0
 %global commit 8e9ba8376ec25a6158719118a97a99a3555d0fd8
 %global tag v%{version}%{?beta:-%{beta}}
 Release:	%{?beta:0.%{beta}.}2
@@ -136,7 +136,7 @@ low-level storage and network attachments, etc.
 %build
 mkdir -p src/%(dirname %{import_path})
 ln -s ../../.. src/%{import_path}
-export GOPATH=$(pwd):%{gopath}
+#export GOPATH=$(pwd):%{gopath}
 export LDFLAGS="-X %{import_path}/version.Package=%{import_path} -X %{import_path}/version.Version=%{tag} -X %{import_path}/version.Revision=%{commit}"
 for i in cmd/*; do
 	%gobuild -o bin/$(basename $i) %{import_path}/$i
