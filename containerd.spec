@@ -2,9 +2,8 @@
 
 %if %{with debug}
 %global _dwz_low_mem_die_limit 0
-%else
-%global debug_package %{nil}
 %endif
+%global _empty_manifest_terminate_build 0
 
 %if ! 0%{?gobuild:1}
 %define gobuild(o:) go build -ldflags "${LDFLAGS:-} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n')" -a -v -x %{?**};
@@ -15,10 +14,10 @@
 #define beta 0
 
 Name: containerd
-Version:	1.5.0
+Version:	1.5.3
 %global commit 8e9ba8376ec25a6158719118a97a99a3555d0fd8
 %global tag v%{version}%{?beta:-%{beta}}
-Release:	%{?beta:0.%{beta}.}2
+Release:	%{?beta:0.%{beta}.}1
 Epoch: 1
 Summary: An industry-standard container runtime
 License: ASL 2.0
