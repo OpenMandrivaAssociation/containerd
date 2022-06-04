@@ -14,7 +14,7 @@
 #define beta 0
 
 Name: containerd
-Version:	1.5.9
+Version:	1.6.5
 %global commit 1407cab509ff0d96baa4f0eb6ff9980270e6e620
 %global tag v%{version}%{?beta:-%{beta}}
 Release:	%{?beta:0.%{beta}.}1
