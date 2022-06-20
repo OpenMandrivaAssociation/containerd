@@ -17,7 +17,7 @@ Name: containerd
 Version:	1.6.6
 %global commit 10c12954828e7c7c9b6e0ea9b0c02b01407d3ae1
 %global tag v%{version}%{?beta:-%{beta}}
-Release:	%{?beta:0.%{beta}.}1
+Release:	%{?beta:0.%{beta}.}2
 Summary: An industry-standard container runtime
 License: ASL 2.0
 URL: https://containerd.io
