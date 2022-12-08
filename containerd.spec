@@ -14,14 +14,14 @@
 #define beta 0
 
 Name: containerd
-Version:	1.6.7
+Version:	1.6.12
 %global commit 10c12954828e7c7c9b6e0ea9b0c02b01407d3ae1
 %global tag v%{version}%{?beta:-%{beta}}
 Release:	%{?beta:0.%{beta}.}1
 Summary: An industry-standard container runtime
 License: ASL 2.0
 URL: https://containerd.io
-Source0: https://%{import_path}/archive/%{tag}/containerd-%{version}%{?beta:-%{beta}}.tar.gz
+Source0: https://github.com/containerd/containerd/archive/%{tag}/containerd-%{version}%{?beta:-%{beta}}.tar.gz
 Source1: containerd.service
 Source2: containerd.toml
 BuildRequires: systemd-rpm-macros
