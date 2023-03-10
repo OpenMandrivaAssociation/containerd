@@ -14,7 +14,7 @@
 #define beta 0
 
 Name: containerd
-Version:	1.6.19
+Version:	1.7.0
 %global commit 10c12954828e7c7c9b6e0ea9b0c02b01407d3ae1
 %global tag v%{version}%{?beta:-%{beta}}
 Release:	%{?beta:0.%{beta}.}1
@@ -151,7 +151,7 @@ ln -s containerd %{buildroot}%{_bindir}/docker-containerd
 ln -s containerd-shim %{buildroot}%{_bindir}/docker-containerd-shim
 
 # These are needed at build time only
-rm %{buildroot}%{_bindir}/gen-manpages %{buildroot}%{_bindir}/protoc-gen-gogoctrd
+rm %{buildroot}%{_bindir}/gen-manpages %{buildroot}%{_bindir}/protoc-gen-go-fieldpath
 
 %post
 %systemd_post containerd.service
