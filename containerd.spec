@@ -3,7 +3,7 @@
 %if %{with debug}
 %global _dwz_low_mem_die_limit 0
 %endif
-%global _empty_manifest_terminate_build 0
+%undefine _debugsource_packages
 
 %if ! 0%{?gobuild:1}
 %define gobuild(o:) go build -ldflags "${LDFLAGS:-} -B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \\n')" -a -v -x %{?**};
@@ -14,7 +14,7 @@
 #define beta 0
 
 Name: containerd
-Version:	1.7.0
+Version:	1.7.1
 %global commit 10c12954828e7c7c9b6e0ea9b0c02b01407d3ae1
 %global tag v%{version}%{?beta:-%{beta}}
 Release:	%{?beta:0.%{beta}.}1
