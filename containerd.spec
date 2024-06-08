@@ -14,8 +14,8 @@
 #define beta 0
 
 Name: containerd
-Version:	1.7.14
-%global commit 091922f03c2762540fd057fba91260237ff86acb
+Version:	1.7.18
+%global commit ae71819c4f5e67bb4d5ae76a6b735f29cc25774e
 %global tag v%{version}%{?beta:-%{beta}}
 Release:	%{?beta:0.%{beta}.}1
 Summary: An industry-standard container runtime
