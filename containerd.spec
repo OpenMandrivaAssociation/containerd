@@ -14,14 +14,12 @@
 #define beta 0
 
 Name: containerd
-Version:	1.7.25
-%global commit ae71819c4f5e67bb4d5ae76a6b735f29cc25774e
-%global tag v%{version}%{?beta:-%{beta}}
+Version:	2.0.2
 Release:	%{?beta:0.%{beta}.}1
 Summary: An industry-standard container runtime
 License: ASL 2.0
 URL: https://containerd.io
-Source0: https://github.com/containerd/containerd/archive/%{tag}/containerd-%{version}%{?beta:-%{beta}}.tar.gz
+Source0: https://github.com/containerd/containerd/archive/v%{version}%{?beta:-%{beta}}/containerd-%{version}%{?beta:-%{beta}}.tar.gz
 Source1: containerd.service
 Source2: containerd.toml
 BuildRequires: systemd-rpm-macros
@@ -132,42 +130,21 @@ low-level storage and network attachments, etc.
 %autosetup -n containerd-%{version}%{?beta:-%{beta}}
 
 %build
-mkdir -p src/%(dirname %{import_path})
-ln -s ../../.. src/%{import_path}
-#export GOPATH=$(pwd):%{gopath}
-export LDFLAGS="-X %{import_path}/version.Package=%{import_path} -X %{import_path}/version.Version=%{tag} -X %{import_path}/version.Revision=%{commit}"
-for i in cmd/*; do
-	%gobuild -o bin/$(basename $i) %{import_path}/$i
-done
-
+%make_build PREFIX=%{_prefix}
 
 %install
-mkdir -p %{buildroot}%{_bindir}
-install -D -m 0755 bin/* %{buildroot}%{_bindir}/
+%make_install PREFIX=%{_prefix}
+
 install -D -m 0644 %{S:1} %{buildroot}%{_unitdir}/containerd.service
 install -D -m 0644 %{S:2} %{buildroot}%{_sysconfdir}/containerd/config.toml
 
 ln -s containerd %{buildroot}%{_bindir}/docker-containerd
-ln -s containerd-shim %{buildroot}%{_bindir}/docker-containerd-shim
-
-# These are needed at build time only
-rm %{buildroot}%{_bindir}/gen-manpages %{buildroot}%{_bindir}/protoc-gen-go-fieldpath
-
-%post
-%systemd_post containerd.service
-
-%preun
-%systemd_preun containerd.service
-
-%postun
-%systemd_postun_with_restart containerd.service
+ln -s containerd-shim-runc-v2 %{buildroot}%{_bindir}/docker-containerd-shim
 
 %files
 %license LICENSE
 %doc README.md
 %{_bindir}/containerd
-%{_bindir}/containerd-shim
-%{_bindir}/containerd-shim-runc-v1
 %{_bindir}/containerd-shim-runc-v2
 %{_bindir}/containerd-stress
 %{_bindir}/docker-containerd
