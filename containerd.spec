@@ -22,6 +22,7 @@ URL: https://containerd.io
 Source0: https://github.com/containerd/containerd/archive/v%{version}%{?beta:-%{beta}}/containerd-%{version}%{?beta:-%{beta}}.tar.gz
 Source1: containerd.service
 Source2: containerd.toml
+BuildRequires:	make
 BuildRequires: systemd-rpm-macros
 %{?go_compiler:BuildRequires: compiler(go-compiler)}
 BuildRequires: golang >= 1.10
