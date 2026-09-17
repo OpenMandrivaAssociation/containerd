@@ -14,7 +14,7 @@
 #define beta 0
 
 Name: containerd
-Version:	2.3.5
+Version:	2.4.0
 Release:	%{?beta:0.%{beta}.}1
 Summary: An industry-standard container runtime
 License: ASL 2.0
@@ -25,7 +25,7 @@ Source2: containerd.toml
 BuildRequires:	make
 BuildRequires: systemd-rpm-macros
 %{?go_compiler:BuildRequires: compiler(go-compiler)}
-BuildRequires: golang >= 1.10
+BuildRequires: golang >= 1.26
 BuildRequires: protobuf-compiler
 BuildRequires: pkgconfig(protobuf) >= 3
 BuildRequires: btrfs-devel
