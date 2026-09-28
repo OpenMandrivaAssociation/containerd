@@ -14,7 +14,7 @@
 #define beta 0
 
 Name: containerd
-Version:	2.4.0
+Version:	2.4.1
 Release:	%{?beta:0.%{beta}.}1
 Summary: An industry-standard container runtime
 License: ASL 2.0
