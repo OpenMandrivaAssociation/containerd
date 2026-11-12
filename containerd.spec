@@ -15,7 +15,7 @@
 
 Name: containerd
 Version:	2.4.2
-Release:	%{?beta:0.%{beta}.}1
+Release:	%{?beta:0.%{beta}.}2
 Summary: An industry-standard container runtime
 License: ASL 2.0
 URL: https://containerd.io
